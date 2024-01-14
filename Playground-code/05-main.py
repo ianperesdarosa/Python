@@ -1,4 +1,4 @@
-class Pessoa:
+class Person:
     def __init__(self, name, age, date):
         self.name = name
         self.age = age
@@ -7,6 +7,6 @@ class Pessoa:
     def my_Func(self):
         return f"{self.name}, {self.age}, {self.date}"      
 
-p1 = Pessoa('Ian', 19, '08/08/2004')
+p1 = Person('Ian', 19, '08/08/2004')
 
 print(p1.my_Func())
