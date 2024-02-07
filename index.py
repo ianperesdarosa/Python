@@ -12,6 +12,5 @@ class Index:
 class MinhaSubclasse(Index, Person):
     pass
 
-
 p1 = MinhaSubclasse(name="Alice", age=30)
 print(f"Nome: {p1.name}, Idade: {p1.age}")
