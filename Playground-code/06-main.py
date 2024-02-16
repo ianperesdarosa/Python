@@ -3,4 +3,4 @@ def func(index, value):
         print(value)
     
 
-func(2, "Hello!")    
+func(5, "Hello!")    
