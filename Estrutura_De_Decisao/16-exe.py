@@ -1,33 +1,32 @@
 import math
 
-class Bask:
+def calcular_raizes(a, b, c):
+    if a == 0:
+        print("A equação não é do segundo grau.")
+        return
 
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
+    delta = b**2 - 4*a*c
 
-    def equa(self):
-        xB = pow(self.b, 2)
-        delta = xB - (4 * self.a * self.c)
+    if delta < 0:
+        print("A equação não possui raízes reais.")
+    elif delta == 0:
+        raiz = -b / (2*a)
+        print(f"A equação possui uma raiz real: {raiz:.2f}")
+    else:
+        raiz1 = (-b + math.sqrt(delta)) / (2*a)
+        raiz2 = (-b - math.sqrt(delta)) / (2*a)
+        print(f"A equação possui duas raízes reais: {raiz1:.2f} e {raiz2:.2f}")
 
-        if delta < 0:
-            return "A equação não possui raízes reais"
+def main():
+    a = float(input("Digite o valor de a: "))
+    if a == 0:
+        print("A equação não é do segundo grau.")
+        return
 
-        else:
-            calc2FasePositivo = (-self.b + math.sqrt(delta)) / (self.c * 2)
+    b = float(input("Digite o valor de b: "))
+    c = float(input("Digite o valor de c: "))
 
-            calc2FaseNegativo = (-self.b - math.sqrt(delta)) / (self.c * 2)
+    calcular_raizes(a, b, c)
 
-            s = calc2FasePositivo, calc2FaseNegativo
-
-            return s
-        
-a = int(input("Digite o valor de a: "))
-b = int(input("Digite o valor de b: "))
-c = int(input("Digite o valor de c: "))
-        
-app = Bask(a, b, c)
-res = app.equa()
-
-print(res)
+if __name__ == "__main__":
+    main()
