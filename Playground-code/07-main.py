@@ -1,17 +1,37 @@
 import pandas as pd
+import yfinance as yf
+import matplotlib.pyplot as plt
+from powerbi import PowerBI
 
-print(pd.__version__)
-class Person: 
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+class StatusInvestImporter:
+    def __init__(self, link):
+        self.link = link
+        self.dados = None
 
-    def myfunc(self):
-        if self.age < 18:
-            print("Menor de idade cadastrado!")
-        else: 
-            print("Cadastro confiramdo!")
-            print("Informações   ${self.name}, ")
+    def importar_dados(self):
+        # Importar dados do Status Invest
+        self.dados = pd.read_csv(self.link)
 
-put = Person("Pedro", 17)
-put.myfunc()
+    def gerar_graficos(self):
+        # Gerar gráficos das ações
+        for acao in self.dados['Ação'].unique():
+            dados_acao = self.dados[self.dados['Ação'] == acao]
+            plt.figure(figsize=(10, 6))
+            plt.plot(dados_acao['Data'], dados_acao['Preço'])
+            plt.title(f'Gráfico de {acao}')
+            plt.xlabel('Data')
+            plt.ylabel('Preço')
+            plt.savefig(f'{acao}.png')
+
+    def exportar_para_power_bi(self):
+        # Exportar gráficos para o Power BI
+        power_bi = PowerBI()
+        for acao in self.dados['Ação'].unique():
+            power_bi.import_image(f'{acao}.png', f'Gráfico de {acao}')
+
+# Exemplo de uso:
+link = 'https://statusinvest.com.br/acoes/acoes.csv'
+importer = StatusInvestImporter(link)
+importer.importar_dados()
+importer.gerar_graficos()
+importer.exportar_para_power_bi()
