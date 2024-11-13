@@ -1,7 +1,7 @@
-import pandas as pd
-import yfinance as yf
-import matplotlib.pyplot as plt
-from powerbi import PowerBI
+import pandas as pd # type: ignore
+import yfinance as yf # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+from powerbi import PowerBI # type: ignore
 
 class StatusInvestImporter:
     def __init__(self, link):
